@@ -16,29 +16,26 @@ pragma solidity 0.8.18;
 */
 
 contract MyToken {
+    // Public variables
+    string public coinName = "Raman";
+    string public coinSymbol = "RMX";
+    uint public totalCoinSupply = 0;
 
-    // public variables here
-    string public tokenName = "Phoenix";
-    string public tokenAbbrv= "PHX";
-    uint public totalSupply = 0;
+    // Mapping variable
+    mapping(address => uint) public balances;
 
-    // mapping variable here
-    mapping  (address=>uint) public balances;
-
-    // mint function
-    function mint (address _address, uint _value) public {
-        totalSupply += _value;
-        balances[_address] += _value;
+    // Mint function
+    function mint(address newaddress, uint newvalue) public {
+        totalCoinSupply += newvalue;
+        balances[newaddress] += newvalue;
     }
 
-    // burn function
-    function burn (address _address, uint _value) public {
-        if (balances[_address]>= _value){
-            totalSupply -= _value;
-            balances[_address] -= _value;
+    // Burn function
+    function burn(address newaddress, uint newvalue) public {
+        if (balances[newaddress] >= newvalue) {
+            totalCoinSupply -= newvalue;
+            balances[newaddress] -= newvalue;
         }
-      
     }
-
-
 }
+
